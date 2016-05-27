@@ -1,0 +1,117 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    android:layout_marginTop="16dp"
+    tools:context="by.tut.tiomkin.businessmonitor_api.ui.fragments.SearchResultFragment">
+
+    <LinearLayout
+        android:id="@+id/ll_head"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_unp_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="УНП:"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_unp_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:textSize="20sp"
+            tools:text="100090562" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_companyname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ll_head"
+        android:singleLine="false"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        tools:text="общество с ограниченной ответственностью 'Баба Маня'" />
+
+    <TableLayout
+        android:id="@+id/tl_table"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_companyname"
+        android:shrinkColumns="1"
+        android:stretchColumns="1">
+
+        <TableRow android:paddingTop="16dp">
+
+            <TextView
+                android:layout_column="1"
+                android:text="Лжеструктуры"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_gravity="right"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                tools:text="не вкл." />
+        </TableRow>
+
+        <TableRow android:paddingTop="16dp">
+
+            <TextView
+                android:layout_column="1"
+                android:text="Судебные споры"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_gravity="right"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                tools:text="5>>" />
+        </TableRow>
+        <TableRow android:paddingTop="16dp">
+
+            <TextView
+                android:layout_column="1"
+                android:text="Ненадежные поставщики"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_gravity="right"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                tools:text="0" />
+        </TableRow>
+
+    </TableLayout>
+    <LinearLayout
+        android:layout_marginTop="16dp"
+        android:id="@+id/ll_addcompany"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tl_table"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/plus"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#51b2fd"
+            android:text="Добавить на контроль"/>
+
+    </LinearLayout>
+
+
+</RelativeLayout>
