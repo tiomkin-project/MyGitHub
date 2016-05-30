@@ -24,7 +24,6 @@ public class NetworkManager {
     private static final String TAG = NetworkManager.class.getSimpleName();
     private static NetworkManager networkManager = new NetworkManager();
     //private static HashMap<Integer, BackendlessCollection> data = new HashMap<>();
-    private static HashMap<Integer, Integer> data = new HashMap<>();
 
     public static NetworkManager getInstance() {
         Log.d(TAG, "getInstance()");
@@ -32,9 +31,10 @@ public class NetworkManager {
 
     }
 
-    //public HashMap<Integer, BackendlessCollection> search(String unp) {
-    public HashMap<Integer, Integer> search(String unp) {
+    public HashMap<Integer, BackendlessCollection> search(String unp) {
+    //public HashMap<Integer, Integer> search(String unp) {
         Log.d(TAG, "search() unp = " + unp);
+        HashMap<Integer, BackendlessCollection> data = new HashMap<>();
 
         //HashMap<Integer, BackendlessCollection> data = new HashMap<>();
         String where = "unp = " + unp;
@@ -46,8 +46,20 @@ public class NetworkManager {
         //Здесь ищем по базе лжеструктур
         BackendlessCollection<BadCompanies> badCompaniesList = Backendless.Persistence.of(BadCompanies.class).find(query);
         Log.d(TAG, "badCompaniesList.size = " + badCompaniesList.getData().size());
-        data.put(0,badCompaniesList.getData().size());
+        data.put(0, badCompaniesList);
+        //END Вариант синхронный
 
+        //START Вариант синхронный
+        //Здесь ищем по базе судебных дел
+        //String name = badCompaniesList.getData().get(0).getName();
+        String name = "Торговое предприятие \"Валден\"";
+        String where_in_disputes = "def_name = '" + name + "'";
+        BackendlessDataQuery query_disputes = new BackendlessDataQuery();
+        query_disputes.setWhereClause(where_in_disputes);
+        Log.d(TAG, "def_name = '" + name + "'");
+        BackendlessCollection<Disputes> disputesList = Backendless.Persistence.of(Disputes.class).find(query_disputes);
+        Log.d(TAG, "disputesList size = " + disputesList.getData().size());
+        data.put(1,disputesList);
         //END Вариант синхронный
 
         //Вариант асинхронный

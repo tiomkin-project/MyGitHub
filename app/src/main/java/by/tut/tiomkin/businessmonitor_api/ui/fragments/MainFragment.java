@@ -121,19 +121,19 @@ public class MainFragment extends BaseFragment {
         return TAG;
     }
 
-    private class AsyncDataLoader extends AsyncTask<String, Void, HashMap<Integer, Integer>> {
+    private class AsyncDataLoader extends AsyncTask<String, Void, HashMap<Integer, BackendlessCollection>> {
 
         @Override
-        protected HashMap<Integer, Integer> doInBackground(String... params) {
+        protected HashMap<Integer, BackendlessCollection> doInBackground(String... params) {
 
             Log.d(TAG, "doInBackground params[0]" + params[0]);
-            HashMap<Integer, Integer> dataReceived = networkManager.search(params[0]);
+            HashMap<Integer, BackendlessCollection> dataReceived = networkManager.search(params[0]);
 
             return dataReceived;
         }
 
         @Override
-        protected void onPostExecute(HashMap<Integer, Integer> dataReceived) {
+        protected void onPostExecute(HashMap<Integer, BackendlessCollection> dataReceived) {
             mProgressBar.setVisibility(View.GONE);
             mToolbarListener.switchFragment(SearchResultFragment.getInstance(getFragmentManager(), dataReceived),
                     true,

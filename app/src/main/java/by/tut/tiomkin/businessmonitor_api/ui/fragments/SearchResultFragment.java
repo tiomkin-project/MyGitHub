@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.backendless.BackendlessCollection;
+
 import java.util.HashMap;
 
 import by.tut.tiomkin.businessmonitor_api.R;
@@ -30,7 +32,7 @@ public class SearchResultFragment extends BaseFragment {
         // Required empty public constructor
     }
 
-    public static SearchResultFragment getInstance(FragmentManager fragmentManager, HashMap<Integer, Integer> dataForSet) {
+    public static SearchResultFragment getInstance(FragmentManager fragmentManager, HashMap<Integer, BackendlessCollection> dataForSet) {
         Log.d(TAG, "getInstance");
         SearchResultFragment searchFragment = (SearchResultFragment) fragmentManager.findFragmentByTag(SearchResultFragment.TAG);
 
@@ -76,12 +78,12 @@ public class SearchResultFragment extends BaseFragment {
         return TAG;
     }
 
-    private static void setBundles(HashMap<Integer, Integer> dataForSet, SearchResultFragment searchFragment) {
+    private static void setBundles(HashMap<Integer, BackendlessCollection> dataForSet, SearchResultFragment searchFragment) {
         Bundle bundle = new Bundle();
-        int badCompaniesCount = dataForSet.get(0);
-        int casesCount = dataForSet.get(1);
+        int badCompaniesCount = dataForSet.get(0).getData().size();
+        int disputesCount = dataForSet.get(1).getData().size();
         bundle.putInt(BAD_COMPANIES_COUNT, badCompaniesCount);
-        bundle.putInt(DISPUTES_COUNT, casesCount);
+        bundle.putInt(DISPUTES_COUNT, disputesCount);
         searchFragment.setArguments(bundle);
     }
 }
