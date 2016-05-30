@@ -17,6 +17,7 @@ import com.backendless.BackendlessCollection;
 import java.util.HashMap;
 
 import by.tut.tiomkin.businessmonitor_api.R;
+import by.tut.tiomkin.businessmonitor_api.enums.FragmentAnim;
 import by.tut.tiomkin.businessmonitor_api.listeners.MyListener;
 
 /**
@@ -102,10 +103,28 @@ public class SearchResultFragment extends BaseFragment {
         if (badCompaniesCount == 1) {
             mBadCompanies.setText("вкл. >>");
             mBadCompanies.setTextColor(Color.RED);
+            mBadCompanies.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mMyListener.switchFragment(BadCompaniesResultFragment.getInstance(getFragmentManager(), data.get("BadCompanies").getData().get(0)),
+                            true,
+                            false,
+                            FragmentAnim.RIGHT_TO_LEFT);
+                }
+            });
         }
         if (disputesCount>0) {
             mDisputes.setText(String.valueOf(disputesCount) + ">>");
             mDisputes.setTextColor(Color.RED);
+            mDisputes.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mMyListener.switchFragment(DisputesResultFragment.getInstance(getFragmentManager()),
+                            true,
+                            false,
+                            FragmentAnim.RIGHT_TO_LEFT);
+                }
+            });
         }
     }
 

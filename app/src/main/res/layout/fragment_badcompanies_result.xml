@@ -60,7 +60,7 @@
 
             <TextView
                 android:id="@+id/details_date"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 tools:text="20.05.2016"
                 android:textColor="#51B2FD"/>
         </TableRow>
@@ -76,7 +76,7 @@
 
             <TextView
                 android:id="@+id/details_reason"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 tools:text="Абзац 6 п.1.1 Указа 488"
                 android:text="@string/tv_disputes_default"
                 android:textColor="#51B2FD"

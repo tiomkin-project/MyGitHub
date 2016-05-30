@@ -90,4 +90,15 @@ public class MainActivity extends BaseActivity implements MyListener {
         }
         transaction.commit();
     }
+
+    @Override
+    public void setTitle(CharSequence title) {
+        
+        ;
+    }
+
+    @Override
+    public void setTitle(int titleId) {
+        super.setTitle(titleId);
+    }
 }
