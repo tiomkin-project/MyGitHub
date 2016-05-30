@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="16dp"
+                tools:context="by.tut.tiomkin.businessmonitor_api.ui.fragments.BadCompaniesResultFragment">
+    <LinearLayout
+        android:id="@+id/details_head"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/details_unp_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/unp_title"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#51b2fd"/>
+
+        <TextView
+            android:id="@+id/details_unp_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:textSize="20sp"
+            android:textColor="#51b2fd"
+            tools:text="100090562" />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/details_companyname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/details_head"
+        android:singleLine="false"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#51b2fd"
+        tools:text="общество с ограниченной ответственностью 'Баба Маня'" />
+    <TableLayout
+        android:id="@+id/details_table"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/details_companyname"
+        android:shrinkColumns="1"
+        android:stretchColumns="1">
+
+        <TableRow android:paddingTop="16dp">
+
+            <TextView
+                android:textColor="#51b2fd"
+                android:layout_column="1"
+                android:text="@string/details_date_title"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/details_date"
+                android:textSize="20sp"
+                tools:text="20.05.2016"
+                android:textColor="#51B2FD"/>
+        </TableRow>
+
+        <TableRow android:paddingTop="16dp">
+
+            <TextView
+                android:textColor="#51b2fd"
+                android:layout_column="1"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:text="@string/details_reason_title"/>
+
+            <TextView
+                android:id="@+id/details_reason"
+                android:textSize="20sp"
+                tools:text="Абзац 6 п.1.1 Указа 488"
+                android:text="@string/tv_disputes_default"
+                android:textColor="#51B2FD"
+                android:singleLine="false"/>
+        </TableRow>
+
+        <LinearLayout
+            android:layout_marginTop="22dp"
+            android:id="@+id/details_addcompany"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/details_table"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/plus"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#51b2fd"
+                android:text="@string/tv_addcompany_text"/>
+
+        </LinearLayout>
+
+    </TableLayout>
+
+
+</RelativeLayout>

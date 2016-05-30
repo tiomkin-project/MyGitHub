@@ -17,9 +17,10 @@
             android:id="@+id/tv_unp_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="УНП:"
+            android:text="@string/unp_title"
             android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textColor="#51b2fd"/>
 
         <TextView
             android:id="@+id/tv_unp_value"
@@ -27,6 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="6dp"
             android:textSize="20sp"
+            android:textColor="#51b2fd"
             tools:text="100090562" />
     </LinearLayout>
 
@@ -51,38 +53,42 @@
         <TableRow android:paddingTop="16dp">
 
             <TextView
+                android:textColor="#51b2fd"
                 android:layout_column="1"
-                android:text="Лжеструктуры"
+                android:text="@string/badcompanies_title"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tv_badCompanies"
-                android:layout_gravity="right"
-                android:textSize="26sp"
+                android:textSize="30sp"
                 android:textStyle="bold"
-                tools:text="не вкл." />
+                tools:text="не вкл."
+                android:text="@string/tv_badcompanies_default"
+                android:textColor="#51B2FD"/>
         </TableRow>
 
         <TableRow android:paddingTop="16dp">
 
             <TextView
+                android:textColor="#51b2fd"
                 android:layout_column="1"
-                android:text="Судебные споры"
+                android:text="@string/disputes_title"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tv_disputes"
-                android:layout_gravity="right"
-                android:textSize="26sp"
+                android:textSize="30sp"
                 android:textStyle="bold"
-                tools:text="5>>" />
+                tools:text="5>>"
+                android:text="@string/tv_disputes_default"
+                android:textColor="#51B2FD"/>
         </TableRow>
 
     </TableLayout>
     <LinearLayout
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="22dp"
         android:id="@+id/ll_addcompany"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

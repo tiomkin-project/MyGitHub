@@ -35,6 +35,14 @@
     <string name="property_title">Property</string>
     <string name="value_title">Value</string>
     <string name="tv_addcompany_text">Добавить на контроль</string>
+    <string name="tv_disputes_default">0</string>
+    <string name="disputes_title">Судебные споры</string>
+    <string name="badcompanies_title">Лжеструктуры</string>
+    <string name="unp_title">УНП:</string>
+    <string name="tv_badcompanies_default">не вкл.</string>
+    <string name="details_reason">Основание</string>
+    <string name="details_date_title">Дата</string>
+    <string name="details_reason_title">Основание</string>
 
 
 </resources>

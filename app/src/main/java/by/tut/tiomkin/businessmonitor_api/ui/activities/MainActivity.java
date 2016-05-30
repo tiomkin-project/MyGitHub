@@ -1,8 +1,6 @@
 package by.tut.tiomkin.businessmonitor_api.ui.activities;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
@@ -13,21 +11,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.backendless.Backendless;
-import com.backendless.BackendlessCollection;
-import com.backendless.persistence.BackendlessDataQuery;
-
-import by.tut.tiomkin.businessmonitor_api.MyApplication;
 import by.tut.tiomkin.businessmonitor_api.R;
 import by.tut.tiomkin.businessmonitor_api.enums.FragmentAnim;
 import by.tut.tiomkin.businessmonitor_api.network.NetworkManager;
-import by.tut.tiomkin.businessmonitor_api.network.data.BadCompanies;
-import by.tut.tiomkin.businessmonitor_api.network.data.crud.common.Defaults;
 import by.tut.tiomkin.businessmonitor_api.ui.fragments.BaseFragment;
 import by.tut.tiomkin.businessmonitor_api.ui.fragments.MainFragment;
-import by.tut.tiomkin.businessmonitor_api.listeners.MyToolbarListener;
+import by.tut.tiomkin.businessmonitor_api.listeners.MyListener;
 
-public class MainActivity extends BaseActivity implements MyToolbarListener {
+public class MainActivity extends BaseActivity implements MyListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
     private NetworkManager networkManager = NetworkManager.getInstance();

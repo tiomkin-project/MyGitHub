@@ -2,9 +2,6 @@ package by.tut.tiomkin.businessmonitor_api.ui.fragments;
 
 
 import android.content.Context;
-import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -18,20 +15,15 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.backendless.Backendless;
 import com.backendless.BackendlessCollection;
-import com.backendless.persistence.BackendlessDataQuery;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import by.tut.tiomkin.businessmonitor_api.MyApplication;
 import by.tut.tiomkin.businessmonitor_api.R;
 import by.tut.tiomkin.businessmonitor_api.enums.FragmentAnim;
-import by.tut.tiomkin.businessmonitor_api.listeners.MyToolbarListener;
+import by.tut.tiomkin.businessmonitor_api.listeners.MyListener;
 import by.tut.tiomkin.businessmonitor_api.network.NetworkManager;
-import by.tut.tiomkin.businessmonitor_api.network.data.BadCompanies;
-import by.tut.tiomkin.businessmonitor_api.network.data.crud.common.Defaults;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -42,7 +34,7 @@ public class MainFragment extends BaseFragment {
     Button mFind;
     EditText mUnp;
     ProgressBar mProgressBar;
-    private MyToolbarListener mToolbarListener;
+    private MyListener mMyListener;
     private NetworkManager networkManager = NetworkManager.getInstance();
 
 
@@ -103,15 +95,15 @@ public class MainFragment extends BaseFragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof MyToolbarListener) {
-            mToolbarListener = (MyToolbarListener) context;
+        if (context instanceof MyListener) {
+            mMyListener = (MyListener) context;
         }
         setHasOptionsMenu(true);
     }
 
     @Override
     public void onDetach() {
-        mToolbarListener = null;
+        mMyListener = null;
         setHasOptionsMenu(false);
         super.onDetach();
     }
@@ -121,21 +113,27 @@ public class MainFragment extends BaseFragment {
         return TAG;
     }
 
-    private class AsyncDataLoader extends AsyncTask<String, Void, HashMap<Integer, BackendlessCollection>> {
+    private class AsyncDataLoader extends AsyncTask<String, Void, HashMap<String, BackendlessCollection>> {
 
         @Override
-        protected HashMap<Integer, BackendlessCollection> doInBackground(String... params) {
+        protected void onPreExecute() {
+            mProgressBar.setVisibility(View.VISIBLE);
+        }
+
+        @Override
+        protected HashMap<String, BackendlessCollection> doInBackground(String... params) {
 
             Log.d(TAG, "doInBackground params[0]" + params[0]);
-            HashMap<Integer, BackendlessCollection> dataReceived = networkManager.search(params[0]);
+            HashMap<String, BackendlessCollection> dataReceived = networkManager.search(params[0]);
 
             return dataReceived;
         }
 
         @Override
-        protected void onPostExecute(HashMap<Integer, BackendlessCollection> dataReceived) {
+        protected void onPostExecute(HashMap<String, BackendlessCollection> dataReceived) {
             mProgressBar.setVisibility(View.GONE);
-            mToolbarListener.switchFragment(SearchResultFragment.getInstance(getFragmentManager(), dataReceived),
+            String unp_value = String.valueOf(mUnp.getText());
+            mMyListener.switchFragment(SearchResultFragment.getInstance(getFragmentManager(), unp_value, dataReceived),
                     true,
                     false,
                     FragmentAnim.RIGHT_TO_LEFT);
@@ -187,7 +185,7 @@ public class MainFragment extends BaseFragment {
             dataForSet.put(1, disputesQuantity);
         }
 
-        mToolbarListener.switchFragment(SearchResultFragment.getInstance(getFragmentManager(), dataForSet),
+        mMyListener.switchFragment(SearchResultFragment.getInstance(getFragmentManager(), dataForSet),
                 true,
                 false,
                 FragmentAnim.RIGHT_TO_LEFT);
