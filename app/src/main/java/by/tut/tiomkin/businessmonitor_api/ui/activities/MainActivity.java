@@ -42,19 +42,8 @@ public class MainActivity extends BaseActivity implements MyToolbarListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initToolbar();
-        showFragment(MainFragment.getInstance(getSupportFragmentManager()), true, false, FragmentAnim.NONE);
-        mFind = (Button) findViewById(R.id.btn_search);
-        mUnp = (EditText) findViewById(R.id.et_unp);
-        Log.d(TAG, "mFind = " + mFind.getText());
-        if (mFind != null) {
-            mFind.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Log.d(TAG, "onClick() --> String.valueOf(mUnp.getText()) = " + String.valueOf(mUnp.getText()));
-                    NetworkManager.getInstance().search(String.valueOf(mUnp.getText()));
-                }
-            });
-        }
+        showFragment(MainFragment.getInstance(getSupportFragmentManager()), false, false, FragmentAnim.NONE);
+
     }
 
 

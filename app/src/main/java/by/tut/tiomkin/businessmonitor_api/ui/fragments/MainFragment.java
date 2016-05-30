@@ -2,6 +2,9 @@ package by.tut.tiomkin.businessmonitor_api.ui.fragments;
 
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -12,13 +15,17 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.backendless.Backendless;
 import com.backendless.BackendlessCollection;
 import com.backendless.persistence.BackendlessDataQuery;
 
+import java.util.HashMap;
+
 import by.tut.tiomkin.businessmonitor_api.MyApplication;
 import by.tut.tiomkin.businessmonitor_api.R;
+import by.tut.tiomkin.businessmonitor_api.enums.FragmentAnim;
 import by.tut.tiomkin.businessmonitor_api.listeners.MyToolbarListener;
 import by.tut.tiomkin.businessmonitor_api.network.NetworkManager;
 import by.tut.tiomkin.businessmonitor_api.network.data.BadCompanies;
@@ -34,6 +41,7 @@ public class MainFragment extends BaseFragment {
     EditText mUnp;
     ProgressBar mProgressBar;
     private MyToolbarListener mToolbarListener;
+    private NetworkManager networkManager = NetworkManager.getInstance();
 
 
     private static final String TAG = MainFragment.class.getSimpleName();
@@ -66,7 +74,9 @@ public class MainFragment extends BaseFragment {
         // Inflate the layout for this fragment
         Log.d(TAG, "onCreateView");
         View view = inflater.inflate(R.layout.fragment_main, container, false);
-       /* mFind = (Button) view.findViewById(R.id.btn_search);
+
+        //Таким образом всё работает
+        mFind = (Button) view.findViewById(R.id.btn_search);
         mUnp = (EditText) view.findViewById(R.id.et_unp);
         mProgressBar = (ProgressBar) view.findViewById(R.id.pb_loading);
 
@@ -74,10 +84,17 @@ public class MainFragment extends BaseFragment {
         mFind.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                search(mUnp);
+                if (!networkManager.isOnline()) {
+                    Toast.makeText(MyApplication.getAppContext(),
+                            "Нет соединения с интернетом!", Toast.LENGTH_LONG).show();
+                    return;
+                } else {
+                    search(mUnp);
+                }
 
             }
-        });*/
+        });
+        Log.d(TAG, "After search(mUnp)");
         return view;
     }
 
@@ -103,8 +120,54 @@ public class MainFragment extends BaseFragment {
     }
 
     private void search(EditText mUnp) {
+        Log.d(TAG, "search()");
         mProgressBar.setVisibility(View.VISIBLE);
-        NetworkManager.getInstance().search(String.valueOf(mUnp.getText()));
+        //HashMap для хранения данных, полученных из метода search.
+        //Под ключом 0 хранятся найденные объекты из таблицы BadCompanies
+        //Под ключом 1 хранятся найденные объекты из таблицы Disputes
+        //HashMap<Integer, BackendlessCollection> dataReceived;
+        HashMap<Integer, Integer> dataReceived;
+
+        Log.d(TAG, "search() mUnp.getText = " + mUnp.getText());
+
+        //dataReceived = NetworkManager.getInstance().search(String.valueOf(mUnp.getText()));
+       
+        dataReceived = networkManager.search(String.valueOf(mUnp.getText()));
+        //TODO обработать получени данных из search
+        //Создаем HashMap с данными, которые получили в результате поиска, для передачи в SearchResultFragment
+        //Под ключом 0 хранится количество записей в реестре лжеструктур
+        //Под ключом 1 хранится количество записей в списке судебных дел
+
+
+        HashMap<Integer, Integer> dataForSet = new HashMap<>();
+
+        //Количество записей о компании в реесте лжеструктур. Может быть 0 или 1
+        Log.d(TAG, "dataReceived.get(0)" + dataReceived.get(0));
+
+        //int badCompaniesQuantity = dataReceived.get(0).getData().size();
+        int badCompaniesQuantity = dataReceived.get(0);
+        if (badCompaniesQuantity == 0) {
+            dataForSet.put(0, 0);
+        } else {
+            dataForSet.put(0, 1);
+        }
+
+        //Количество записей о компании в списке судебных дел. Может быть 0 или неограниченное количество
+        //int disputesQuantity = dataReceived.get(1).getData().size();
+        int disputesQuantity = dataReceived.get(1);
+        if (disputesQuantity == 0) {
+            dataForSet.put(1, 0);
+        } else {
+            dataForSet.put(1, disputesQuantity);
+        }
+
+        mToolbarListener.switchFragment(SearchResultFragment.getInstance(getFragmentManager(), dataForSet),
+                true,
+                false,
+                FragmentAnim.RIGHT_TO_LEFT);
+        mProgressBar.setVisibility(View.GONE);
+
 
     }
+
 }

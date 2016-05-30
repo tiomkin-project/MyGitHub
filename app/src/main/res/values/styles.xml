@@ -10,4 +10,14 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <!-- My Application Theme-->
+    <style name="BMTheme" parent="AppTheme">
+        <item name="android:windowBackground">@color/background</item>
+    </style>
+
+    <style name="AppButtonStyle">
+        <item name="android:background">@color/buttonColor</item>
+        <item name="android:textColor">@color/buttonTextColor</item>
+    </style>
+
 </resources>

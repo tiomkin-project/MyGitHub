@@ -34,6 +34,7 @@
     <string name="basic_find_title">Basic Find</string>
     <string name="property_title">Property</string>
     <string name="value_title">Value</string>
+    <string name="tv_addcompany_text">Добавить на контроль</string>
 
 
 </resources>

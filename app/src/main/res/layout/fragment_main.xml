@@ -45,12 +45,12 @@
             android:gravity="center"
             android:hint="@string/et_unp_hint"
             android:inputType="number"
-            android:text="111111111"
+            android:text="100090562"
             android:maxLength="9" />
 
         <Button
             android:id="@+id/btn_search"
-            style="?android:attr/buttonStyleSmall"
+            style="@style/AppButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -87,12 +87,15 @@
             android:orientation="horizontal">
 
             <Button
+                style="@style/AppButtonStyle"
                 android:id="@+id/btn_login"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/btn_login_text" />
+                android:text="@string/btn_login_text"
+                android:layout_marginRight="16dp"/>
 
             <Button
+                style="@style/AppButtonStyle"
                 android:id="@+id/btn_register"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -57,6 +57,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/tv_badCompanies"
                 android:layout_gravity="right"
                 android:textSize="26sp"
                 android:textStyle="bold"
@@ -72,24 +73,11 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/tv_disputes"
                 android:layout_gravity="right"
                 android:textSize="26sp"
                 android:textStyle="bold"
                 tools:text="5>>" />
-        </TableRow>
-        <TableRow android:paddingTop="16dp">
-
-            <TextView
-                android:layout_column="1"
-                android:text="Ненадежные поставщики"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_gravity="right"
-                android:textSize="26sp"
-                android:textStyle="bold"
-                tools:text="0" />
         </TableRow>
 
     </TableLayout>
@@ -109,7 +97,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#51b2fd"
-            android:text="Добавить на контроль"/>
+            android:text="@string/tv_addcompany_text"/>
 
     </LinearLayout>
 
