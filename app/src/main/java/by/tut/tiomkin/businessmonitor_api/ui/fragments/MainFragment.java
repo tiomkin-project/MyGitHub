@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -21,6 +22,7 @@ import com.backendless.Backendless;
 import com.backendless.BackendlessCollection;
 import com.backendless.persistence.BackendlessDataQuery;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import by.tut.tiomkin.businessmonitor_api.MyApplication;
@@ -89,7 +91,7 @@ public class MainFragment extends BaseFragment {
                             "Нет соединения с интернетом!", Toast.LENGTH_LONG).show();
                     return;
                 } else {
-                    search(mUnp);
+                    search(String.valueOf(mUnp.getText()));
                 }
 
             }
@@ -119,9 +121,33 @@ public class MainFragment extends BaseFragment {
         return TAG;
     }
 
-    private void search(EditText mUnp) {
+    private class AsyncDataLoader extends AsyncTask<String, Void, HashMap<Integer, Integer>> {
+
+        @Override
+        protected HashMap<Integer, Integer> doInBackground(String... params) {
+
+            Log.d(TAG, "doInBackground params[0]" + params[0]);
+            HashMap<Integer, Integer> dataReceived = networkManager.search(params[0]);
+
+            return dataReceived;
+        }
+
+        @Override
+        protected void onPostExecute(HashMap<Integer, Integer> dataReceived) {
+            mProgressBar.setVisibility(View.GONE);
+            mToolbarListener.switchFragment(SearchResultFragment.getInstance(getFragmentManager(), dataReceived),
+                    true,
+                    false,
+                    FragmentAnim.RIGHT_TO_LEFT);
+        }
+    }
+
+    private void search(String mUnp) {
         Log.d(TAG, "search()");
-        mProgressBar.setVisibility(View.VISIBLE);
+
+        new AsyncDataLoader().execute(mUnp);
+
+        /*mProgressBar.setVisibility(View.VISIBLE);
         //HashMap для хранения данных, полученных из метода search.
         //Под ключом 0 хранятся найденные объекты из таблицы BadCompanies
         //Под ключом 1 хранятся найденные объекты из таблицы Disputes
@@ -131,7 +157,7 @@ public class MainFragment extends BaseFragment {
         Log.d(TAG, "search() mUnp.getText = " + mUnp.getText());
 
         //dataReceived = NetworkManager.getInstance().search(String.valueOf(mUnp.getText()));
-       
+
         dataReceived = networkManager.search(String.valueOf(mUnp.getText()));
         //TODO обработать получени данных из search
         //Создаем HashMap с данными, которые получили в результате поиска, для передачи в SearchResultFragment
@@ -165,7 +191,7 @@ public class MainFragment extends BaseFragment {
                 true,
                 false,
                 FragmentAnim.RIGHT_TO_LEFT);
-        mProgressBar.setVisibility(View.GONE);
+        mProgressBar.setVisibility(View.GONE);*/
 
 
     }

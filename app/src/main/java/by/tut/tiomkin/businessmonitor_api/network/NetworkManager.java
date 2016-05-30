@@ -42,10 +42,13 @@ public class NetworkManager {
         query.setWhereClause(where);
         Backendless.initApp(MyApplication.getAppContext(), Defaults.APPLICATION_ID, Defaults.SECRET_KEY, Defaults.VERSION);
 
-        //Вариант синхронный
+        //START Вариант синхронный
         //Здесь ищем по базе лжеструктур
         BackendlessCollection<BadCompanies> badCompaniesList = Backendless.Persistence.of(BadCompanies.class).find(query);
         Log.d(TAG, "badCompaniesList.size = " + badCompaniesList.getData().size());
+        data.put(0,badCompaniesList.getData().size());
+
+        //END Вариант синхронный
 
         //Вариант асинхронный
         //Здесь ищем по базе лжеструктур
