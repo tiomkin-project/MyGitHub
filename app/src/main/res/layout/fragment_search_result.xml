@@ -14,21 +14,18 @@
         android:orientation="horizontal">
 
         <TextView
+            style="@style/text_title"
             android:id="@+id/tv_unp_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/unp_title"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="#51b2fd"/>
+            android:text="@string/unp_title"/>
 
         <TextView
+            style="@style/text_value"
             android:id="@+id/tv_unp_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="6dp"
-            android:textSize="20sp"
-            android:textColor="#51b2fd"
             tools:text="100090562" />
     </LinearLayout>
 

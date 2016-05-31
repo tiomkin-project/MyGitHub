@@ -17,6 +17,7 @@ import com.backendless.BackendlessCollection;
 import java.util.HashMap;
 
 import by.tut.tiomkin.businessmonitor_api.R;
+import by.tut.tiomkin.businessmonitor_api.constants.Defaults;
 import by.tut.tiomkin.businessmonitor_api.enums.FragmentAnim;
 import by.tut.tiomkin.businessmonitor_api.listeners.MyListener;
 
@@ -156,5 +157,11 @@ public class SearchResultFragment extends BaseFragment {
         mMyListener = null;
         setHasOptionsMenu(false);
         super.onDetach();
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        if (mMyListener != null) mMyListener.setTitle(Defaults.SEARCH_RESULT_FRAGMENT_TITLE);
     }
 }

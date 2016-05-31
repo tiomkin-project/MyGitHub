@@ -40,9 +40,23 @@
     <string name="badcompanies_title">Лжеструктуры</string>
     <string name="unp_title">УНП:</string>
     <string name="tv_badcompanies_default">не вкл.</string>
+
+
+    <!-- fragment_badcompanies_result.xml -->
     <string name="details_reason">Основание</string>
     <string name="details_date_title">Дата включения</string>
-    <string name="details_reason_title">Основание</string>
+    <string name="details_reason_title">Основание*</string>
+    <string name="details_ukaz">*Указ Президента Республики Беларусь от 23.10.2012 № 488 \"О некоторых мерах по предупреждению незаконной минимизации сумм налоговых обязательств \"</string>
+    <string name="item_court_text">Суд:</string>
+    <string name="item_case_text">№ дела:</string>
+    <string name="item_plaintiff_text">Истец:</string>
+    <string name="item_matter_text">Суть спора:</string>
+    <string name="item_date_text">Дата заседания:</string>
+    <string name="item_judge_text">Судья:</string>
+    <string name="tv_company_text">Наименование:</string>
+    <string name="btn_delete_text">Удалить</string>
+    <string name="btn_details_text">Просмотр</string>
+    <string name="tv_warning">На данный момент допускается отслеживание 5 юрлиц и ИП</string>
 
 
 </resources>

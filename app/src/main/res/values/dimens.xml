@@ -10,4 +10,11 @@
     <dimen name="dp120">120dp</dimen>
     <dimen name="dp144">144dp</dimen>
     <dimen name="dp184">184dp</dimen>
+
+    <dimen name="marginTop">16dp</dimen>
+    <dimen name="marginBottom">16dp</dimen>
+    <dimen name="marginLeft">16dp</dimen>
+    <dimen name="marginRight">16dp</dimen>
+    <dimen name="margin">16dp</dimen>
+
 </resources>

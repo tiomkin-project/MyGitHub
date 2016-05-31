@@ -4,12 +4,9 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.backendless.Backendless;
 import com.backendless.BackendlessCollection;
-import com.backendless.async.callback.AsyncCallback;
-import com.backendless.exceptions.BackendlessFault;
 import com.backendless.persistence.BackendlessDataQuery;
 
 import java.util.HashMap;
@@ -17,7 +14,7 @@ import java.util.HashMap;
 import by.tut.tiomkin.businessmonitor_api.MyApplication;
 import by.tut.tiomkin.businessmonitor_api.network.data.BadCompanies;
 import by.tut.tiomkin.businessmonitor_api.network.data.Disputes;
-import by.tut.tiomkin.businessmonitor_api.network.data.crud.common.Defaults;
+import by.tut.tiomkin.businessmonitor_api.constants.Defaults;
 
 public class NetworkManager {
 
@@ -43,7 +40,8 @@ public class NetworkManager {
 
         //START Вариант синхронный
         //Здесь ищем по базе лжеструктур
-        BackendlessCollection<BadCompanies> badCompaniesList = Backendless.Persistence.of(BadCompanies.class).find(query);
+        //BackendlessCollection<BadCompanies> badCompaniesList = Backendless.Persistence.of(BadCompanies.class).find(query);
+        BackendlessCollection<BadCompanies> badCompaniesList = BadCompanies.find(query);
         Log.d(TAG, "badCompaniesList.size = " + badCompaniesList.getData().size());
         data.put("BadCompanies", badCompaniesList);
         //END Вариант синхронный
@@ -56,7 +54,8 @@ public class NetworkManager {
         BackendlessDataQuery query_disputes = new BackendlessDataQuery();
         query_disputes.setWhereClause(where_in_disputes);
         Log.d(TAG, "def_name = '" + name + "'");
-        BackendlessCollection<Disputes> disputesList = Backendless.Persistence.of(Disputes.class).find(query_disputes);
+        //BackendlessCollection<Disputes> disputesList = Backendless.Persistence.of(Disputes.class).find(query_disputes);
+        BackendlessCollection<Disputes> disputesList = Disputes.find(query_disputes);
         Log.d(TAG, "disputesList size = " + disputesList.getData().size());
         data.put("Disputes",disputesList);
         //END Вариант синхронный

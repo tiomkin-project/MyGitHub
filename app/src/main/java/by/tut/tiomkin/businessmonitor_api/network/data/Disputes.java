@@ -13,7 +13,7 @@ public class Disputes
   private String objectId;
   private String room;
   private String plaintiff_name;
-  private java.util.Date date_hearing;
+  private String date_hearing;
   private Integer court_id;
   private String def_name;
   private String disp_matter;
@@ -56,12 +56,12 @@ public class Disputes
     this.plaintiff_name = plaintiff_name;
   }
 
-  public java.util.Date getDate_hearing()
+  public String getDate_hearing()
   {
     return date_hearing;
   }
 
-  public void setDate_hearing( java.util.Date date_hearing )
+  public void setDate_hearing( String date_hearing )
   {
     this.date_hearing = date_hearing;
   }

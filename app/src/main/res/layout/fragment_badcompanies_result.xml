@@ -14,96 +14,94 @@
         android:orientation="horizontal">
 
         <TextView
+            style="@style/text_title"
             android:id="@+id/details_unp_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/unp_title"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="#51b2fd"/>
+            android:text="@string/unp_title"/>
 
         <TextView
+            style="@style/text_value"
             android:id="@+id/details_unp_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="6dp"
-            android:textSize="20sp"
-            android:textColor="#51b2fd"
             tools:text="100090562" />
     </LinearLayout>
     <TextView
+        style="@style/text_value"
         android:id="@+id/details_companyname"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/details_head"
-        android:singleLine="false"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:textColor="#51b2fd"
-        tools:text="общество с ограниченной ответственностью 'Баба Маня'" />
+        tools:text="100090562" />
     <TableLayout
         android:id="@+id/details_table"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/details_companyname"
-        android:shrinkColumns="1"
+        android:shrinkColumns="2"
         android:stretchColumns="1">
+
 
         <TableRow android:paddingTop="16dp">
 
             <TextView
-                android:textColor="#51b2fd"
+                style="@style/text_title"
                 android:layout_column="1"
-                android:text="@string/details_date_title"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:text="@string/details_date_title" />
 
             <TextView
+                style="@style/text_value"
                 android:id="@+id/details_date"
-                android:textSize="18sp"
-                tools:text="20.05.2016"
-                android:textColor="#51B2FD"/>
+                tools:text="20.05.2016"/>
         </TableRow>
 
         <TableRow android:paddingTop="16dp">
 
             <TextView
-                android:textColor="#51b2fd"
+                style="@style/text_title"
                 android:layout_column="1"
-                android:textSize="20sp"
-                android:textStyle="bold"
                 android:text="@string/details_reason_title"/>
 
             <TextView
+                style="@style/text_value"
                 android:id="@+id/details_reason"
-                android:textSize="18sp"
                 tools:text="Абзац 6 п.1.1 Указа 488"
-                android:text="@string/tv_disputes_default"
-                android:textColor="#51B2FD"
-                android:singleLine="false"/>
+                android:text="@string/tv_disputes_default"/>
         </TableRow>
 
-        <LinearLayout
-            android:layout_marginTop="22dp"
-            android:id="@+id/details_addcompany"
-            android:layout_width="match_parent"
+
+   </TableLayout>
+
+    <TextView
+        android:layout_marginTop="16dp"
+        android:id="@+id/tv_ukaz"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/details_table"
+        android:textColor="#51B2FD"
+        android:text="@string/details_ukaz"/>
+
+    <LinearLayout
+        android:layout_marginTop="22dp"
+        android:id="@+id/details_addcompany"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_ukaz"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+        <ImageView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/details_table"
-            android:orientation="vertical"
-            android:gravity="center_horizontal">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/plus"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#51b2fd"
-                android:text="@string/tv_addcompany_text"/>
+            android:src="@drawable/plus"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#51b2fd"
+            android:text="@string/tv_addcompany_text"/>
 
-        </LinearLayout>
-
-    </TableLayout>
+    </LinearLayout>
 
 
 </RelativeLayout>

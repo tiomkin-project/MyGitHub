@@ -21,6 +21,7 @@ import java.util.HashMap;
 
 import by.tut.tiomkin.businessmonitor_api.MyApplication;
 import by.tut.tiomkin.businessmonitor_api.R;
+import by.tut.tiomkin.businessmonitor_api.constants.Defaults;
 import by.tut.tiomkin.businessmonitor_api.enums.FragmentAnim;
 import by.tut.tiomkin.businessmonitor_api.listeners.MyListener;
 import by.tut.tiomkin.businessmonitor_api.network.NetworkManager;
@@ -192,6 +193,12 @@ public class MainFragment extends BaseFragment {
         mProgressBar.setVisibility(View.GONE);*/
 
 
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        if (mMyListener != null) mMyListener.setTitle(Defaults.MAIN_FRAGMENT_TITLE);
     }
 
 }
